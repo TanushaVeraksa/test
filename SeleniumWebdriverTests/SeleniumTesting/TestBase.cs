@@ -6,7 +6,7 @@ namespace SeleniumTesting
     public class TestBase
     {
         public const string DESTINATION_CITY_ERROR_TEXT = "Пожалуйста, укажите аэропорт назначения (Куда).",
-                            IDENTICAL_CITIES_ERROR_TEXT = "Поиск поддерживает не более 7 детей";
+                            IDENTICAL_CITIES_ERROR_TEXT = "Пожалуйста, укажите аэропорт назначения (Куда).";
 
         public ChromeDriver chromeDriver = new ChromeDriver();
 
@@ -21,7 +21,7 @@ namespace SeleniumTesting
         public void OpenWebsiteMainPage()
         {
             chromeDriver.Manage().Timeouts().ImplicitWait = timeSpan6Sec;
-            chromeDriver.Manage().Window.Maximize();
+            //chromeDriver.Manage().Window.Maximize();
             chromeDriver.Navigate().GoToUrl("https://www.kayak.ru");
         }
 

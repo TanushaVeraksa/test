@@ -34,20 +34,26 @@ namespace SeleniumTesting
           }
 
         [TestMethod]
-        public void SearchForChildrenMoreThan7Test()
+        public void SearchWithTheSameArrivalTest()
         {
-            OpenWebsiteMainPage();
+            OpenWebsite();
 
-            IWebElement Passengers = chromeDriver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div/div/div[1]/div/div/section[2]/div/div[1]/div[1]/div[2]/div/button/div/div[1]/div/div");
-            Passengers.Click();
+            IWebElement ArrivalCity = chromeDriver.FindElementByXPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[2]/div/input[1]");
+            ArrivalCity.SendKeys("Минск" + OpenQA.Selenium.Keys.Enter);
 
-            IWebElement PassengersList = chromeDriver.FindElementByXPath("/html/body/div[74]/div[2]/div/div/div[3]/div/div[2]/div/div/div[3]/button/span");
-            for (int i = 1; i < 9; i++) { 
-            PassengersList.Click(); }
+            IWebElement DepartureDate = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[3]/div/div[2]/div[1]/div/div[2]"));
+            DepartureDate.Clear();
+            DepartureDate.SendKeys("19.11.2019");
 
+            IWebElement ArrivalDate = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[3]/div/div[2]/div[3]/div[1]/div/div[2]"));
+            ArrivalDate.Clear();
+            ArrivalDate.SendKeys("22.11.2019");
 
-            IWebElement textErrorOfPassengers = chromeDriver.FindElement(By.XPath("/html/body/div[74]/div[2]/div/div/div[6]/strong"));
-            Assert.AreEqual(IDENTICAL_CITIES_ERROR_TEXT, textErrorOfPassengers.Text);
+            IWebElement searchButton = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[6]/div/button"));
+            searchButton.SendKeys(OpenQA.Selenium.Keys.Enter);
+
+            IWebElement textError = chromeDriver.FindElement(By.XPath("/html/body/div[9]/div[3]/div/div/div/ul/li/ul/li"));
+            Assert.AreEqual(IDENTICAL_CITIES_ERROR_TEXT, textError.Text);
 
             QuitBrowser();        
         }
