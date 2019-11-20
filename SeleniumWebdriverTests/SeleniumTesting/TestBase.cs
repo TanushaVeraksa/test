@@ -1,33 +1,31 @@
 ﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace SeleniumTesting
 {
     public class TestBase
     {
-        public const string DESTINATION_CITY_ERROR_TEXT = "Пожалуйста, укажите аэропорт назначения (Куда).",
-                            IDENTICAL_CITIES_ERROR_TEXT = "Пожалуйста, укажите аэропорт назначения (Куда).";
 
-        public ChromeDriver chromeDriver = new ChromeDriver();
-
-        public TimeSpan timeSpan6Sec = new TimeSpan(6000);
+        public IWebDriver webDriver = new ChromeDriver();
 
         public void OpenWebsite()
         {
-            chromeDriver.Manage().Timeouts().ImplicitWait = timeSpan6Sec;
-            chromeDriver.Navigate().GoToUrl("https://www.kayak.ru/horizon/sem/flights/general?lang=ru&skipapp=true");
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            webDriver.Manage().Window.Maximize();
+            webDriver.Navigate().GoToUrl("https://www.kayak.ru/horizon/sem/flights/general?lang=ru&skipapp=true");
         }
 
-        public void OpenWebsiteMainPage()
+        public void OpenMainPage()
         {
-            chromeDriver.Manage().Timeouts().ImplicitWait = timeSpan6Sec;
-            //chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Navigate().GoToUrl("https://www.kayak.ru");
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            webDriver.Manage().Window.Maximize();
+            webDriver.Navigate().GoToUrl("https://www.kayak.ru");
         }
 
         public void QuitBrowser()
         {
-            chromeDriver.Quit();
+            webDriver.Quit();
         }
     }
 }

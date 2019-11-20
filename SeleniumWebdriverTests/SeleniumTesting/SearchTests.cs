@@ -15,45 +15,37 @@ namespace SeleniumTesting
           {
               OpenWebsite();
 
-              IWebElement DepartureDate = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[3]/div/div[2]/div[1]/div/div[2]"));
+              IWebElement DepartureDate = webDriver.FindElement(By.XPath("//*[@aria-label='Дата вылета туда']"));
               DepartureDate.Clear();
-              DepartureDate.SendKeys("19.11.2019");
+              DepartureDate.SendKeys("25.11.2019");
 
-              IWebElement ArrivalDate = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[3]/div/div[2]/div[3]/div[1]/div/div[2]"));
+              IWebElement ArrivalDate = webDriver.FindElement(By.XPath("//*[@aria-label='Дата обратно вылета']"));//*[@id='dECa -return -input']"
               ArrivalDate.Clear();
-              ArrivalDate.SendKeys("22.11.2019");
+              ArrivalDate.SendKeys("28.11.2019");
 
-              IWebElement searchButton = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[6]/div/button"));
+              IWebElement searchButton = webDriver.FindElement(By.XPath("//*[@aria-label='Найти билеты']"));
               searchButton.SendKeys(OpenQA.Selenium.Keys.Enter);
 
-              IWebElement textErrorOfCityArrival = chromeDriver.FindElement(By.XPath("/html/body/div[9]/div[3]/div/div/div/ul/li/ul/li"));
-              var txt = textErrorOfCityArrival.Text;
-              Assert.AreEqual(DESTINATION_CITY_ERROR_TEXT, textErrorOfCityArrival.Text);
+              IWebElement textErrorOfCityArrival = webDriver.FindElement(By.XPath("//*[@class='errorMessages']/li/ul/li"));
+              Assert.AreEqual("Пожалуйста, укажите аэропорт назначения (Куда).", textErrorOfCityArrival.Text);
 
               QuitBrowser();
           }
 
         [TestMethod]
-        public void SearchWithTheSameArrivalTest()
+        public void NumberOfChildrenExceeds7Test()
         {
-            OpenWebsite();
+            OpenMainPage();
 
-            IWebElement ArrivalCity = chromeDriver.FindElementByXPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[2]/div/input[1]");
-            ArrivalCity.SendKeys("Минск" + OpenQA.Selenium.Keys.Enter);
+            IWebElement PassengersCheckbox = webDriver.FindElement(By.XPath("//*[@id='GR9s - travelersAboveForm - dialog - trigger']/div/div[1]/div/div"));
+            PassengersCheckbox.Click();
 
-            IWebElement DepartureDate = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[3]/div/div[2]/div[1]/div/div[2]"));
-            DepartureDate.Clear();
-            DepartureDate.SendKeys("19.11.2019");
+            IWebElement ChildrenButton = webDriver.FindElement(By.XPath("//*[@id='m4bE']"));
+            for(int i=0; i<9; i++)
+                ChildrenButton.Click();
 
-            IWebElement ArrivalDate = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[3]/div/div[2]/div[3]/div[1]/div/div[2]"));
-            ArrivalDate.Clear();
-            ArrivalDate.SendKeys("22.11.2019");
-
-            IWebElement searchButton = chromeDriver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div[1]/form/div/div/div[6]/div/button"));
-            searchButton.SendKeys(OpenQA.Selenium.Keys.Enter);
-
-            IWebElement textError = chromeDriver.FindElement(By.XPath("/html/body/div[9]/div[3]/div/div/div/ul/li/ul/li"));
-            Assert.AreEqual(IDENTICAL_CITIES_ERROR_TEXT, textError.Text);
+            IWebElement errorText = webDriver.FindElement(By.XPath("//*[@id='GR9s - travelersAboveForm - errorMessageText']"));
+            Assert.AreEqual("Поиск поддерживает не более 7 детей", errorText.Text);
 
             QuitBrowser();        
         }
