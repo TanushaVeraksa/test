@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using Assert = NUnit.Framework.Assert;
 using OpenQA.Selenium.Edge;
+using System;
 
 namespace SeleniumTesting
 {
@@ -17,11 +18,11 @@ namespace SeleniumTesting
 
               IWebElement DepartureDate = webDriver.FindElement(By.XPath("//*[@aria-label='Дата вылета туда']"));
               DepartureDate.Clear();
-              DepartureDate.SendKeys("25.11.2019");
+              DepartureDate.SendKeys(DateTime.Today.ToString());
 
-              IWebElement ArrivalDate = webDriver.FindElement(By.XPath("//*[@aria-label='Дата обратно вылета']"));//*[@id='dECa -return -input']"
+              IWebElement ArrivalDate = webDriver.FindElement(By.XPath("//*[@aria-label='Дата обратно вылета']"));
               ArrivalDate.Clear();
-              ArrivalDate.SendKeys("28.11.2019");
+              ArrivalDate.SendKeys(DateTime.Today.AddDays(5).ToString());
 
               IWebElement searchButton = webDriver.FindElement(By.XPath("//*[@aria-label='Найти билеты']"));
               searchButton.SendKeys(OpenQA.Selenium.Keys.Enter);
