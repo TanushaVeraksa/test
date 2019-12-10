@@ -37,7 +37,7 @@ namespace PageObject
         }
 
         [Test]
-        public void WriteAReviewWithoutEmail()
+        public void WriteAReviewWithoutValidEmail()
         {
             StartPage startPage = new StartPage(webDriver).GoToDropDownMenuYet();
             HelpPage helpPage = new HelpPage(webDriver).SelectItemLeaveAReview();
