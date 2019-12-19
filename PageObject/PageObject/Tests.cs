@@ -29,7 +29,7 @@ namespace PageObject
         }
 
         [Test]
-        public void CarRentalForPeriodExceedingPossible()
+        public void SearchForATicketWithoutDestinationWhere()
         {
             StartPage startPage = new StartPage(webDriver)
                 .FillInLocationFields(DateTime.Today.ToString(), DateTime.Today.AddDays(5).ToString());
