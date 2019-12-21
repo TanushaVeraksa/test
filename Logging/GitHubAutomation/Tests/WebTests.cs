@@ -23,7 +23,6 @@ namespace GitHubAutomation.Tests
           [Test]
           public void SearchForATicketWithoutDestinationWhere()
           {
-              Driver.Manage().Window.Maximize();
               TakeScreenshotWhenTestFailed(() =>
               {
                   StartPage startPage = new StartPage(Driver)
@@ -36,7 +35,6 @@ namespace GitHubAutomation.Tests
            [Test]
            public void WriteAReviewWithoutValidEmail()
            {
-               Driver.Manage().Window.Maximize();
                TakeScreenshotWhenTestFailed(() =>
                {
                    StartPage startPage = new StartPage(Driver).GoToDropDownMenuYet();
@@ -79,7 +77,6 @@ namespace GitHubAutomation.Tests
           [Test]
            public void SearchForTicketsWithChildrenOverSeven()
            {
-              Driver.Manage().Window.Maximize();
               TakeScreenshotWhenTestFailed(() =>
                {
                    StartPage startPage = new StartPage(Driver)
@@ -94,7 +91,6 @@ namespace GitHubAutomation.Tests
           [Test]
          public void SendingFeedbackWithoutMessage()
           {
-              Driver.Manage().Window.Maximize();
               TakeScreenshotWhenTestFailed(() =>
               {
                   StartPage startPage = new StartPage(Driver).GoToDropDownMenuYet();
@@ -150,7 +146,6 @@ namespace GitHubAutomation.Tests
         [Test]
         public void WriteAReviewWithoutEmail()
         {
-            Driver.Manage().Window.Maximize();
             TakeScreenshotWhenTestFailed(() =>
             {
                 StartPage startPage = new StartPage(Driver).GoToDropDownMenuYet();

@@ -19,6 +19,7 @@ namespace GitHubAutomation.Tests
         public void SetDriver()
         {
             Driver = DriverSingleton.GetDriver();
+            Driver.Manage().Window.Maximize();
             Driver.Navigate().GoToUrl("https://www.kayak.ru/horizon/sem/flights/general?lang=ru&skipapp=true");
         }
 
