@@ -49,7 +49,6 @@ namespace GitHubAutomation.Tests
            [Test]
            public void SearchTicketsWithTheSameDepartureAndArrival()
            {
-               Driver.Manage().Window.Maximize();
                TakeScreenshotWhenTestFailed(() =>
                {
                    StartPage startPage = new StartPage(Driver)
@@ -63,7 +62,6 @@ namespace GitHubAutomation.Tests
            [Test]
            public void SearchForEconomyClassTickets()
           {
-               Driver.Manage().Window.Maximize();
                TakeScreenshotWhenTestFailed(() =>
                {
                   StartPage startPage = new StartPage(Driver)   
