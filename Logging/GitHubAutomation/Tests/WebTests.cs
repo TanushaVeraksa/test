@@ -46,19 +46,7 @@ namespace GitHubAutomation.Tests
                });
            }
 
-           [Test]
-           public void SearchTicketsWithTheSameDepartureAndArrival()
-           {
-               TakeScreenshotWhenTestFailed(() =>
-               {
-                   StartPage startPage = new StartPage(Driver)
-                   .FillInLocationFields(DateTime.Today.ToString(), DateTime.Today.AddDays(5).ToString())
-                   .FillInTheDestinationField(OrderCreater.WithTheSamePlace())
-                   .TicketSearch();
-                   Assert.AreEqual("Пожалуйста, укажите аэропорт назначения(Куда).", startPage.textErrorOfCityArrival.Text);
-               });
-           }
-
+          
            [Test]
            public void SearchForEconomyClassTickets()
           {
