@@ -55,7 +55,7 @@ namespace GitHubAutomation.Tests
                    .FillInLocationFields(DateTime.Today.ToString(), DateTime.Today.AddDays(5).ToString())
                    .FillInTheDestinationField(OrderCreater.WithTheSamePlace())
                    .TicketSearch();
-                   Assert.AreEqual("Пожалуйста, задайте конкретные аэропорты отправления (Откуда) и прибытия (Куда).", startPage.textErrorOfCityArrival.Text);
+                   Assert.AreEqual("Пожалуйста, укажите аэропорт назначения(Куда).", startPage.textErrorOfCityArrival.Text);
                });
            }
 
