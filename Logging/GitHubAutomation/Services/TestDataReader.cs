@@ -28,7 +28,10 @@ namespace GitHubAutomation.Services
 
         public static string GetTestData(string key)
         {
-            return ConfigFile.AppSettings.Settings[key]?.Value;
+			if (ConfigFile.AppSettings.Settings[key] == null)
+				return null;
+			else
+				return ConfigFile.AppSettings.Settings[key].Value;
         }
     }
 }
